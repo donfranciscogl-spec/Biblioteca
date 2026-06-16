@@ -142,7 +142,7 @@ if (isset($_POST['btn_donar'])) {
 
 // Botones de salida
 echo '      <div class="btn-contenedor">
-                <a href="Biblioteca.Html" class="btn btn-verde">Volver al Inicio</a>
+                <a href="index.html" class="btn btn-verde">Volver al Inicio</a>
                 <a href="Formulario-Donativolibro.html" class="btn btn-marron">Donar otro Libro</a>
             </div>
     </div>

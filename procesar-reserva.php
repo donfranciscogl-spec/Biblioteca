@@ -161,7 +161,7 @@ try {
 }
 
 echo '      <div class="btn-contenedor">
-                <a href="Biblioteca.Html" class="btn btn-verde">Volver al Inicio</a>
+                <a href="index.html" class="btn btn-verde">Volver al Inicio</a>
                 <a href="formulario-reserva.html" class="btn btn-marron">Nueva Reserva</a>
             </div>
     </div>
