@@ -1,0 +1,169 @@
+/* ====== Estilos Header ====== */
+header {
+    color: #3e2723; 
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    border-bottom: 2px solid #8b5a2b;
+    padding-bottom: 10px;
+}
+
+/* ====== Estilos generales ====== */
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: radial-gradient(circle, #f5f5dc 0%, #d2b48c 100%);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* ====== Caja del formulario principal ====== */
+form {
+    background: #fffdf7;
+    padding: 40px;
+    border: 2px solid #8b5a2b;
+    border-radius: 3px;
+    box-shadow: 10px 10px 0px rgba(92, 64, 51, 0.15); /* Sombra sólida vintage */
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Detalle visual: una chincheta simulada en la parte superior del formulario */
+form::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: #5c4033;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.6), 2px 2px 3px rgba(0,0,0,0.4);
+}
+
+/* ====== Inputs y Select ====== */
+input[type="text"], input[type="email"], input[type="date"], select {
+    width: 100%;
+    padding: 10px 14px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #b89f7d;
+    border-radius: 2px;
+    background-color: #fdfaf3;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    color: #3e2723;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    border-color: #8b5a2b;
+    box-shadow: 0 0 5px rgba(139, 90, 43, 0.4);
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* ====== Etiquetas ====== */
+form p, label {
+    font-weight: bold;
+    color: #5c4033;
+    display: block;
+    font-size: 1.05em;
+}
+
+/* ====== Radio buttons ====== */
+.grupo-radio {
+    border: 1px dashed #8b5a2b;
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fdfaf3;
+}
+
+.grupo-radio legend {
+    font-weight: bold;
+    color: #3e2723;
+    padding: 0 10px;
+    font-style: italic;
+}
+
+.grupo-radio div {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+input[type="radio"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+    margin-top: 0;
+    cursor: pointer;
+    accent-color: #8b5a2b; /* Tinte marrón en navegadores modernos */
+}
+
+/* ====== Zona de Botones Principales ====== */
+.botones {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+input[type="submit"], input[type="reset"] {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 3px;
+    font-weight: bold;
+    border: 1px solid #3e2723;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fdfaf3;
+    font-size: 14px;
+}
+
+input[type="submit"] { background: #5c4033; }
+input[type="submit"]:hover { background: #3e2723; color: #d4af37; }
+
+input[type="reset"] { background: #8b2500; border-color: #5e1900; }
+input[type="reset"]:hover { background: #5e1900; }
+
+/* ====== Botón "Go to Home" ====== */
+.enlace-volver { display: flex; justify-content: center; margin-top: 20px; }
+
+.boton-bonito {
+    background-color: #4a5d23; /* Verde oliva vintage */
+    color: #fdfaf3;
+    padding: 12px 0;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    border: 1px solid #2e3b16;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.boton-bonito:hover { background-color: #2e3b16; color: #d4af37; }
+
+@media (max-width: 480px) {
+    form { padding: 25px 20px; }
+    .botones { flex-direction: column; }
+}

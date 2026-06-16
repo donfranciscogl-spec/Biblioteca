@@ -1,0 +1,39 @@
+<html>
+
+<body>	
+	<form action="REGISTRO DE USUARIO" method ="post"> 
+		DNI: <input type="text" name="DNI" placeholder="00000000A" pattern="[0-9]{8}[A-Za-z]" title="Debe tener 8 digitos y una letra" required> <br>   
+		Nombre: <input type="text" name="name_cli"> <br>
+		Apellidos: <input type="text" name="apll_cli"> <br>
+		Telefono: <input type="text" name="tlf_cli"> <br>
+		Email: <input type="Email" name="@_cli" placeholder="esmuyfacil@gmail.com" pattern=^".+@clienteempresa.com" title="debe ser un email exclusivo de cliente" required> <br>
+		<p>Escoge tu Incidencia </p>
+		Incidencia:  <br>
+				<input type="radio" id="ratas" name="vector" value="ratas">
+						<label for="ratas">ratas</label><br>
+				<input type="radio" id="ratones" name="vector" value="ratones">
+						<label for="ratones">ratones</label><br>
+				<input type="radio" id="cucarachas" name="vector" value="cucarachas">
+						<label for="cucarachas">cucarachas</label> <br>
+						<p> seleccione su sexo </p> 
+						
+				Sexo: <select name="menu">
+					<option value="0" disabled selected>Selecciona una opción</option>
+					<option value="1"> masculino </option>
+					<option value="2"> femenino </option>
+					<option value="3"> otro </option>
+					</select> <br>
+		<details>
+		<summary>Información personal</summary>
+		<p><strong>Sexo:</strong> Masculino</p>
+		<p><strong>Edad:<input type="date"> </input> </strong>
+		<p><strong>Ubicación:</strong> Madrid</p>
+		</details> <br>
+		<br>
+				<input type="submit" value="aceptar">
+				<input type="reset"  value="reestablecer">
+
+
+</form>
+</body>
+</html>

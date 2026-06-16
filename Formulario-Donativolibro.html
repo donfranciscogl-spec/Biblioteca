@@ -1,0 +1,125 @@
+<!-- http://localhost/Marcas/Formulario_Donativolibro.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Donación</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <header><h1>Formulario de Donativos</h1></header>
+    <main>
+        <form class="form-Don" action="donacion.php" method="POST" id="miFormulario">
+            <div class="grupo-form">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="DNI" placeholder="00000000A" pattern="[0-9]{8}[A-Za-z]" required>
+            </div>
+            <div class="grupo-form">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div class="grupo-form">
+                <label for="isbn">ISBN:</label>
+                <input type="text" id="isbn" name="isbn">
+            </div>
+            <div class="grupo-form">
+                <label for="ano">Año de publicación:</label>
+                <input type="text" id="ano" name="año_de_publicacion">
+            </div>
+
+            <div class="grupo-form">
+                <label for="autor">Autor:</label>
+                <select id="autor" name="id_autor" required onchange="comprobarNuevo(this, 'contenedor-nuevo-autor')">
+                    <option value="">-- Selecciona un autor --</option>
+                </select>
+            </div>
+            <div class="grupo-form" id="contenedor-nuevo-autor" style="display: none; margin-top: 10px;">
+                <label for="nuevo_autor">Nombre del nuevo autor:</label>
+                <input type="text" id="nuevo_autor" name="nombre_nuevo_autor" onblur="verificarDuplicado(this, 'autor')">
+            </div>
+
+            <div class="grupo-form">
+                <label for="editorial">Editorial:</label>
+                <select id="editorial" name="id_editorial" required onchange="comprobarNuevo(this, 'contenedor-nueva-editorial')">
+                    <option value="">-- Selecciona una editorial --</option>
+                </select>
+            </div>
+            <div class="grupo-form" id="contenedor-nueva-editorial" style="display: none; margin-top: 10px;">
+                <label for="nueva_editorial">Nombre de la nueva editorial:</label>
+                <input type="text" id="nueva_editorial" name="nombre_nueva_editorial" onblur="verificarDuplicado(this, 'editorial')">
+            </div>
+            
+            <fieldset class="grupo-radio">
+                <legend>Método de Entrega:</legend>
+                <div><input type="radio" id="Correos" name="metodo_donacion" value="Correos" required><label for="Correos">Correos</label></div>
+                <div><input type="radio" id="Presencial" name="metodo_donacion" value="Presencial"><label for="Presencial">Presencial</label></div>
+                <div><input type="radio" id="Digital" name="metodo_donacion" value="Libro Digital"><label for="Digital">Libro Digital</label></div>
+            </fieldset>
+            
+            <div class="botones">
+                <input type="submit" name="btn_donar" value="Aceptar">
+                <input type="reset" value="Restablecer">
+            </div>
+            <div class="enlace-volver"><a href="Biblioteca.Html" class="boton-bonito">Go to Home</a></div>
+        </form>
+    </main>    
+
+<script>
+    // 1. Mostrar/Ocultar campos nuevos
+    function comprobarNuevo(select, contenedorId) {
+        const contenedor = document.getElementById(contenedorId);
+        const input = contenedor.querySelector('input');
+        if (select.value === "otra") {
+            contenedor.style.display = 'block';
+            input.required = true;
+        } else {
+            contenedor.style.display = 'none';
+            input.required = false;
+            input.value = "";
+        }
+    }
+
+    // 2. CONTROL DE DUPLICADOS: Comprobar si lo escrito ya existe en el select
+    function verificarDuplicado(input, selectId) {
+        const nombreIntroducido = input.value.trim().toLowerCase();
+        const select = document.getElementById(selectId);
+        const opciones = Array.from(select.options);
+
+        const existe = opciones.some(opt => opt.text.trim().toLowerCase() === nombreIntroducido);
+
+        if (existe) {
+            alert(`⚠️ Error: "${input.value}" ya existe en la lista. Por favor, selecciónalo directamente.`);
+            input.value = "";
+            // Opcional: volver a poner el select en la opción correcta
+            select.value = opciones.find(opt => opt.text.trim().toLowerCase() === nombreIntroducido).value;
+            comprobarNuevo(select, input.parentElement.id);
+        }
+    }
+
+    // 3. Carga dinámica de datos
+    function cargarDatos(url, selectId) {
+        const select = document.getElementById(selectId);
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.Id_autor || item.Id_editorial; 
+                    option.textContent = item.Nombre; 
+                    select.appendChild(option);
+                });
+                const optOtra = document.createElement('option');
+                optOtra.value = "otra";
+                optOtra.textContent = "+ Añadir nuevo/a";
+                optOtra.style.fontWeight = "bold";
+                select.appendChild(optOtra);
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        cargarDatos('obtener-autores.php', 'autor');
+        cargarDatos('obtener-editoriales.php', 'editorial');
+    });
+</script>
+</body>
+</html>

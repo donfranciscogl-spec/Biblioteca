@@ -1,0 +1,33 @@
+
+<!-- 
+   http://localhost/Marcas/formulario.html 
+
+-->
+
+<html> 
+
+	<meta charset="UTF-8"/>
+<link rel="stylesheet" href="formulario.css">
+<title>Formulario de Registro</title>
+<header>
+	<h1>Formulario de Inscripción</h1>
+	</header>
+<body>	
+	<form action="registro.php" method="POST"> 
+		<p>DNI: <input type="text" name="DNI" placeholder="00000000A" pattern="[0-9]{8}[A-Za-z]" title="It has to be 8 difgits plus a number" required> </p> 
+		<p>Nombre Completo: <input type="text" name="Nombre Completo"> </p>
+		<p>Gmail: <input type="Email" name="Gmail" placeholder="cliente@Gmail.com" pattern="*+@Gmail.com" title="It has to be a Gmail Email" required></p> 
+        <p>Telefono: <input type="text" name="Telefono" placeholder="000000000" pattern="[0-9]{9}" title= "It has to be a valid number" required>
+		<p>Año de Nacimiento: <input type="date" name="Año de Nacimiento" required> </p>
+		
+		<input type="submit" name="aceptar" value="aceptar">
+		<input type="reset"  value="reestablecer">
+                
+
+<a href="Biblioteca.Html" class="boton-bonito"> Go to Home</a>
+</form>
+
+  
+
+</body>
+</html>

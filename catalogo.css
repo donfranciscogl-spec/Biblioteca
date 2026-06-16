@@ -1,0 +1,100 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: radial-gradient(circle, #f5f5dc 0%, #d2b48c 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.seccion {
+    background-color: #fffdf7;
+    border: 3px solid #5c4033;
+    border-radius: 4px;
+    box-shadow: 12px 12px 0px rgba(92, 64, 51, 0.2); /* Sombra offset retro */
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.1em;
+    color: #3e2723;
+}
+
+caption {
+    font-size: 1.8rem;
+    font-weight: normal;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #fdfaf3;
+    background: #3e2723;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px double #d4af37; /* Línea doble dorada */
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px dashed #b89f7d; /* Separadores punteados de tinta vieja */
+}
+
+th {
+    background-color: #e8d8c3;
+    font-weight: bold;
+    color: #5c4033;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #8b5a2b;
+}
+
+/* Efecto cebra para libros de registro antiguo */
+tr:nth-child(even) { background-color: #fdfaf3; }
+tr:nth-child(odd) { background-color: #f8f1e5; }
+tr:hover { background-color: #eaddcf; }
+
+tr:last-child td { border-bottom: none; }
+
+.botones-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+.boton-bonito {
+    background-color: #5c4033;
+    color: #fdfaf3;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid #3e2723;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.boton-bonito:hover {
+    background-color: #3e2723;
+    color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(92, 64, 51, 0.4);
+}
+
+.td-especial {
+    background-color: #dcd0c0;
+    border-top: 2px solid #8b5a2b;
+}

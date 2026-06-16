@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Libros - Biblioteca IA1</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    
+    <form action="procesar-reserva.php" method="POST">
+        <h2 style="text-align:center; color:#333;">📖 Solicitar Préstamo</h2>
+        <p style="text-align:center; margin-bottom: 25px;">Introduce tus datos y el libro que deseas:</p>
+
+        <label for="dni">DNI del socio:</label>
+        <input type="text" id="dni" name="dni" placeholder="Ej: 00000000X" required>
+
+        <label for="titulo_libro">Título del Libro:</label>
+        <input type="text" id="titulo_libro" name="titulo_libro" placeholder="Ej: Don quijote de la mancha" required>
+
+        <div class="botones">
+            <input type="submit" value="Consultar y Reservar">
+            <input type="reset" value="Limpiar">
+        </div>
+
+        <div class="enlace-volver">
+            <a href="Biblioteca.Html" class="boton-bonito">Volver al Inicio</a>
+        </div>
+    </form>
+
+</body>
+</html>

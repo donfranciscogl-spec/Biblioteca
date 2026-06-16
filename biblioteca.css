@@ -1,0 +1,147 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Tipografía clásica de máquina de escribir o libro antiguo */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    /* Fondo estilo pergamino / papel viejo */
+    background: radial-gradient(circle, #f5f5dc 0%, #d2b48c 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    flex-wrap: wrap;
+    color: #3e2723;
+}
+
+/* CAJA DERECHA (Estilo cubierta de libro antiguo de cuero) */
+.container {
+    background: #3e2723; 
+    border: 4px double #d4af37; /* Borde dorado clásico */
+    padding: 50px;
+    border-radius: 4px;
+    box-shadow: 8px 8px 15px rgba(62, 39, 35, 0.6);
+    text-align: center;
+    max-width: 500px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.container h1 {
+    color: #f5f5dc;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.container p {
+    color: #e8d8c3;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* CAJA IZQUIERDA (Estilo papel/documento antiguo) */
+.contenedor {
+    background: #faf0e6; 
+    border: 2px solid #8b5a2b; /* Borde marrón madera */
+    padding: 40px 50px;
+    border-radius: 4px;
+    box-shadow: 8px 8px 15px rgba(62, 39, 35, 0.3);
+    max-width: 500px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.contenedor h1 {
+    color: #5c4033;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px dashed #8b5a2b; /* Subrayado clásico */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+h1 { margin-bottom: 20px; }
+p { color: #4a3b32; margin-bottom: 30px; font-size: 16px; }
+
+/* LISTA DE LIBROS */
+ol {
+    list-style: none;
+    counter-reset: ranking;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+li {
+    position: relative;
+    background: #fff8dc;
+    margin-bottom: 10px;
+    padding: 15px 15px 15px 50px;
+    border: 1px solid #deb887;
+    border-radius: 3px;
+    color: #5c4033;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    counter-increment: ranking;
+}
+
+li::before {
+    content: counter(ranking);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: #8b5a2b; /* Fondo sello retro */
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: normal;
+    font-family: 'Georgia', serif;
+}
+
+.contenedor li:hover {
+    background: #ffe4b5;
+    transform: translateX(5px);
+    box-shadow: 2px 2px 8px rgba(139, 90, 43, 0.3);
+}
+
+/* BOTONES GENERALES (Estilo sellos/etiquetas) */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #5c4033;
+    color: #f5f5dc;
+    text-decoration: none;
+    border: 1px solid #3e2723;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin: 5px;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: #3e2723;
+    color: #d4af37; /* Letra dorada al pasar el ratón */
+}
+
+.contenedor .btn {
+    background: #8b5a2b;
+}
+
+.contenedor .btn:hover {
+    background: #5c4033;
+}

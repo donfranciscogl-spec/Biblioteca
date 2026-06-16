@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Socio - Biblioteca Vintage</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #f5f5dc 0%, #d2b48c 100%);
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #3e2723;
+        }
+
+        .buscador-caja {
+            background: #fffdf7;
+            padding: 30px;
+            border: 2px solid #8b5a2b;
+            box-shadow: 8px 8px 0px rgba(92, 64, 51, 0.2);
+            margin-bottom: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #b89f7d;
+            font-family: 'Georgia', serif;
+            width: 70%;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .btn-vintage {
+            background: #5c4033;
+            color: #f5f5dc;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+        }
+        
+        .btn-vintage:hover {
+            background: #3e2723;
+            color: #d4af37;
+        }
+
+        /* DISEÑO DEL CARNET */
+        #carnet {
+            display: none; 
+            background: #faf0e6;
+            width: 100%;
+            max-width: 500px;
+            border: 3px double #8b5a2b;
+            padding: 30px;
+            position: relative;
+            box-shadow: 15px 15px 30px rgba(0,0,0,0.1);
+        }
+
+        #carnet::after {
+            content: "OFICIAL";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 3px solid rgba(139, 90, 43, 0.2);
+            color: rgba(139, 90, 43, 0.2);
+            padding: 5px;
+            transform: rotate(15deg);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .carnet-header {
+            border-bottom: 2px solid #8b5a2b;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .foto-simulada {
+            width: 100px;
+            height: 120px;
+            background: #eaddcf;
+            border: 1px solid #b89f7d;
+            float: left;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .datos-personales { margin-bottom: 20px; }
+        .etiqueta { font-weight: bold; text-transform: uppercase; font-size: 0.8em; color: #8b5a2b; }
+        .valor { font-size: 1.1em; margin-bottom: 10px; display: block; }
+
+        .stats-caja {
+            clear: both;
+            display: flex;
+            justify-content: space-around;
+            background: #fdfaf3;
+            border: 1px dashed #8b5a2b;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 1.8em; font-weight: bold; display: block; }
+        .lista-libros { margin-top: 20px; font-style: italic; }
+        .error-msg { color: #8b2500; font-weight: bold; margin-top: 20px; display: none; }
+        
+        .enlace-volver {
+            color: #8b5a2b; 
+            font-size: 0.9em; 
+            text-decoration: none; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        
+        .enlace-volver:hover { color: #d4af37; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-transform: uppercase; letter-spacing: 3px;">Consulta de Archivos</h1>
+
+    <div class="buscador-caja">
+        <p>Introduzca el DNI del socio para extraer su ficha:</p>
+        <input type="text" id="dniInput" placeholder="00000000A">
+        <button class="btn-vintage" onclick="consultarSocio()">Consultar</button>
+        <div id="errorMsg" class="error-msg">Socio no hallado en nuestros registros.</div>
+        
+        <div style="margin-top: 25px; border-top: 1px dashed #b89f7d; padding-top: 15px;">
+            <a href="Biblioteca.Html" class="enlace-volver">⬅ Volver al Inicio</a>
+        </div>
+    </div>
+
+    <div id="carnet">
+        <div class="carnet-header">
+            <h2 style="margin:0;">CARNET DE SOCIO</h2>
+            <small>BIBLIOTECA FICTICIA IA1</small>
+        </div>
+
+        <div class="foto-simulada">👤</div>
+
+        <div class="datos-personales">
+            <span class="etiqueta">Nombre completo</span>
+            <span class="valor" id="res-nombre">-</span>
+
+            <span class="etiqueta">Contacto</span>
+            <span class="valor" id="res-contacto">-</span>
+        </div>
+
+        <div class="stats-caja">
+            <div class="stat-item">
+                <span class="etiqueta">En posesión</span>
+                <span class="stat-num" id="res-actuales">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="etiqueta">Total leídos</span>
+                <span class="stat-num" id="res-historico">0</span>
+            </div>
+        </div>
+
+        <div class="lista-libros" id="caja-lista">
+            <span class="etiqueta">Obras pendientes de devolución:</span>
+            <ul id="res-lista" style="padding-left: 20px; margin-top: 10px;">
+                </ul>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <button class="btn-vintage" onclick="cerrarCarnet()">Cerrar Archivo</button>
+        </div>
+    </div>
+
+    <script>
+        function consultarSocio() {
+            const dni = document.getElementById('dniInput').value.trim();
+            const carnet = document.getElementById('carnet');
+            const error = document.getElementById('errorMsg');
+
+            if (dni === "") {
+                alert("Por favor, introduzca un DNI.");
+                return;
+            }
+
+            fetch(`obtener_socio.php?dni=${dni}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        carnet.style.display = 'none';
+                        error.style.display = 'block';
+                    } else {
+                        error.style.display = 'none';
+                        carnet.style.display = 'block';
+
+                        // Rellenar datos
+                        document.getElementById('res-nombre').textContent = data.nombre;
+                        document.getElementById('res-contacto').textContent = `${data.email} | Tel: ${data.telefono}`;
+                        document.getElementById('res-actuales').textContent = data.actuales;
+                        document.getElementById('res-historico').textContent = data.historico;
+
+                        // Rellenar lista de libros
+                        const lista = document.getElementById('res-lista');
+                        lista.innerHTML = '';
+                        if (data.lista_pendientes.length === 0) {
+                            lista.innerHTML = '<li>Ninguna obra pendiente.</li>';
+                        } else {
+                            data.lista_pendientes.forEach(titulo => {
+                                const li = document.createElement('li');
+                                li.textContent = titulo;
+                                lista.appendChild(li);
+                            });
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                    alert("Error al conectar con los archivos.");
+                });
+        }
+
+        // Nueva función para el botón de "Cerrar Archivo" dentro del carnet
+        function cerrarCarnet() {
+            document.getElementById('carnet').style.display = 'none';
+            document.getElementById('dniInput').value = ''; // Limpiamos el buscador
+        }
+    </script>
+</body>
+</html>

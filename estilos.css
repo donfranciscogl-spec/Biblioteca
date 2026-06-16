@@ -1,0 +1,43 @@
+  /* 1. Estilo general de la página */
+        body {
+            font-family: 'Arial', sans-serif; /* Letra moderna */
+            background-color: #f0f2f5;        /* Fondo gris suave */
+            text-align: center;               /* Todo centrado */
+            padding-top: 50px;
+        }
+
+        /* 2. Estilo del Título */
+        h1 {
+            color: #2c3e50; /*japanese indigo*/
+            margin-bottom: 40px; /* Espacio debajo del título */
+            font-size: 3em;
+        }
+
+        /* 3. Estilo de los Botones (Enlaces) */
+        .boton-bonito {
+            background-color: #4539b3; /* Color */
+            color: white;              /* Texto blanco */
+            padding: 15px 32px;        /* Relleno (grosor) */
+            text-align: center;
+            text-decoration: none;     /* Quita el subrayado feo */
+            display: inline-block;
+            font-size: 16px;
+            margin: 15px;              /* Espacio entre botones */
+            border-radius: 8px;        /* Bordes redondeados */
+            border: none;
+            transition: 0.3s;          /* Suaviza el cambio de color */
+            cursor: pointer;
+        }
+
+        /* 4. Efecto cuando pasas el ratón por encima */
+        .boton-bonito:hover {
+            display: inline-block;
+            
+            background-color: #0e98d8; /* Color */
+            transform: scale(1.05);    /* Crece un poquito */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra */
+        }
+
+
+
+        

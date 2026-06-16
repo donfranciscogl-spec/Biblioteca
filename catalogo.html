@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros</title>
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+
+<section class="seccion">
+    <table>
+        <caption>Catálogo de Libros para Reservar</caption>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        
+        <tbody id="cuerpo-catalogo">
+            <tr>
+                <td colspan="3">Consultando los archivos de la biblioteca...</td>
+            </tr>
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <td colspan="3" class="td-especial">
+                    <div class="botones-container">
+                        <a href="formulario.html" class="boton-bonito">¡Regístrate!</a>
+                        <a href="Biblioteca.Html" class="boton-bonito">Ir al Inicio</a>
+                        <a href="Formulario-Donativolibro.html" class="boton-bonito">¡Dona un libro!</a>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tbody = document.getElementById('cuerpo-catalogo');
+
+        // Llamamos al PHP que acabas de crear
+        fetch('obtener_catalogo.php')
+            .then(response => response.json())
+            .then(data => {
+                tbody.innerHTML = ''; // Limpiamos el mensaje de carga
+
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3">Actualmente no hay libros en el catálogo.</td></tr>';
+                    return;
+                }
+
+                // Generamos una fila por cada libro devuelto por la base de datos
+                data.forEach(libro => {
+                    const tr = document.createElement('tr');
+                    
+                    const tdTitulo = document.createElement('td');
+                    tdTitulo.textContent = libro.Titulo;
+                    
+                    const tdAutor = document.createElement('td');
+                    tdAutor.textContent = libro.Autor;
+                    
+                    const tdCantidad = document.createElement('td');
+                    tdCantidad.textContent = 'Cant: ' + libro.Cantidad;
+                    
+                    tr.appendChild(tdTitulo);
+                    tr.appendChild(tdAutor);
+                    tr.appendChild(tdCantidad);
+                    
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error cargando el catálogo:', error);
+                tbody.innerHTML = '<tr><td colspan="3" style="color:#8b2500;">Error de conexión con los archivos.</td></tr>';
+            });
+    });
+</script>
+
+</body>
+</html>
